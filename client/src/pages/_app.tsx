@@ -11,12 +11,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Nextron | Front end Challenge</title>
       </Head>
+      <CssBaseline />
       <ThemeProvider theme={themeOptions}>
         <AuthProvider>
           <Component {...pageProps} />
         </AuthProvider>
       </ThemeProvider>
-      <CssBaseline />
     </>
   );
 }

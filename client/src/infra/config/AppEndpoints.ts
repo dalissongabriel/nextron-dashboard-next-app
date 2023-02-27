@@ -11,5 +11,6 @@ export const AppEndpoints = {
     register: `${AppURLs.api}/register`,
     session: `${AppURLs.api}/session`,
     paymentMethods: `${AppURLs.api}/paymentmethods`,
+    paymentMethodId: (id: number) => `${AppURLs.api}/paymentmethods/${id}`,
   },
 };

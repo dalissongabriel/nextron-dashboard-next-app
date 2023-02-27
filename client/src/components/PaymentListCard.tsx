@@ -5,13 +5,14 @@ import Link from "next/link";
 import LabelTypography from "@components/LabelTypography";
 import ValueTypography from "@components/ValueTypography";
 import { IPaymentMethod } from "@models/PaymentMethodsModels";
-import CardDetails from "./CardDetails";
+import CreditCardDetails from "./CreditCardDetails";
 
 interface Props {
   payment: IPaymentMethod;
+  hrefToDetails: string;
 }
 
-export default function PaymentListCard({ payment }: Props) {
+export default function PaymentListCard({ payment, hrefToDetails }: Props) {
   return (
     <Card key={payment.id} sx={{ p: 2, borderTop: "10px solid #FB1B44" }}>
       <Grid container spacing={2}>
@@ -22,7 +23,7 @@ export default function PaymentListCard({ payment }: Props) {
         <Grid item xs={6} sm={6}>
           <LabelTypography>Details</LabelTypography>
           <ValueTypography>
-            <CardDetails
+            <CreditCardDetails
               initWith={payment.cardBin}
               endsWith={payment.cardLastFour}
             />
@@ -47,7 +48,7 @@ export default function PaymentListCard({ payment }: Props) {
           LinkComponent={Link}
           color="secondary"
           startIcon={<CreditCardOutlined />}
-          href="#"
+          href={hrefToDetails}
           id={`payment-method-${payment.id}-btn-details-id`}
           data-testid={`payment-method-${payment.id}-btn-details-id`}
         >

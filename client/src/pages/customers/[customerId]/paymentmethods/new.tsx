@@ -6,7 +6,6 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 
 import BackIconButton from "@components/BackIconButton";
-import Container from "@components/Container";
 import FormFullWidth from "@components/FormFullWidth";
 import Layout from "@components/Layout";
 import PageTitle from "@components/PageTitle";
@@ -105,183 +104,181 @@ export default function NewPaymentMethod() {
 
   return (
     <Layout>
-      <Container>
-        <BackIconButton href={AppRoutes.customersId(customerId)} />
-        <Paper sx={{ p: 2 }}>
-          <PageTitle bottomDivider>Post Payment Method</PageTitle>
-          <FormFullWidth onSubmit={handleSubmit(handleSubmitPaymentMethod)}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Controller
-                  name="methodType"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Method Type"
-                      required
-                      error={!!errors.methodType?.message}
-                      helperText={errors.methodType?.message}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="cardBin"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Card bin"
-                      required
-                      error={!!errors.cardBin?.message}
-                      helperText={errors.cardBin?.message}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="cardLastFour"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Card Last Four"
-                      required
-                      error={!!errors.cardLastFour?.message}
-                      helperText={errors.cardLastFour?.message}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="expiryMonth"
-                  defaultValue={1}
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Expiry Month"
-                      type="number"
-                      fullWidth
-                      required
-                      error={!!errors.expiryMonth?.message}
-                      helperText={errors.expiryMonth?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="expiryYear"
-                  defaultValue={new Date().getFullYear() + 5}
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Expiry Year"
-                      type="number"
-                      fullWidth
-                      required
-                      error={!!errors.expiryYear?.message}
-                      helperText={errors.expiryYear?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="eWallet"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="eWallet"
-                      error={!!errors.eWallet?.message}
-                      helperText={errors.eWallet?.message}
-                      fullWidth
-                      required
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="nameOnCard"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Name on Card"
-                      error={!!errors.nameOnCard?.message}
-                      helperText={errors.nameOnCard?.message}
-                      fullWidth
-                      required
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="billingAddress.country"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Country"
-                      error={!!errors.billingAddress?.country?.message}
-                      helperText={errors.billingAddress?.country?.message}
-                      fullWidth
-                      required
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="billingAddress.street1"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Street"
-                      fullWidth
-                      error={!!errors.billingAddress?.street1?.message}
-                      helperText={errors.billingAddress?.street1?.message}
-                      required
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  color="primary"
-                  variant="contained"
-                  sx={{ color: "white" }}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "..." : "submit"}
-                </Button>
-              </Grid>
+      <BackIconButton href={AppRoutes.customersId(customerId)} />
+      <Paper sx={{ p: 2 }}>
+        <PageTitle bottomDivider>Post Payment Method</PageTitle>
+        <FormFullWidth onSubmit={handleSubmit(handleSubmitPaymentMethod)}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Controller
+                name="methodType"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Method Type"
+                    required
+                    error={!!errors.methodType?.message}
+                    helperText={errors.methodType?.message}
+                    fullWidth
+                    {...field}
+                  />
+                )}
+              />
             </Grid>
-          </FormFullWidth>
-        </Paper>
-      </Container>
+            <Grid item xs={12}>
+              <Controller
+                name="cardBin"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Card bin"
+                    required
+                    error={!!errors.cardBin?.message}
+                    helperText={errors.cardBin?.message}
+                    fullWidth
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="cardLastFour"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Card Last Four"
+                    required
+                    error={!!errors.cardLastFour?.message}
+                    helperText={errors.cardLastFour?.message}
+                    fullWidth
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="expiryMonth"
+                defaultValue={1}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Expiry Month"
+                    type="number"
+                    fullWidth
+                    required
+                    error={!!errors.expiryMonth?.message}
+                    helperText={errors.expiryMonth?.message}
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="expiryYear"
+                defaultValue={new Date().getFullYear() + 5}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Expiry Year"
+                    type="number"
+                    fullWidth
+                    required
+                    error={!!errors.expiryYear?.message}
+                    helperText={errors.expiryYear?.message}
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="eWallet"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="eWallet"
+                    error={!!errors.eWallet?.message}
+                    helperText={errors.eWallet?.message}
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="nameOnCard"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Name on Card"
+                    error={!!errors.nameOnCard?.message}
+                    helperText={errors.nameOnCard?.message}
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="billingAddress.country"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Country"
+                    error={!!errors.billingAddress?.country?.message}
+                    helperText={errors.billingAddress?.country?.message}
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="billingAddress.street1"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Street"
+                    fullWidth
+                    error={!!errors.billingAddress?.street1?.message}
+                    helperText={errors.billingAddress?.street1?.message}
+                    required
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                fullWidth
+                color="primary"
+                variant="contained"
+                sx={{ color: "white" }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "..." : "submit"}
+              </Button>
+            </Grid>
+          </Grid>
+        </FormFullWidth>
+      </Paper>
     </Layout>
   );
 }

@@ -23,15 +23,18 @@ export interface IRegisterResponse {
 export interface ICustomerListResponse {
   customers: IBackendCustomer[];
 }
+export interface ICustomerDataResponse {
+  customer: IBackendCustomer;
+}
 
-export interface IPaymentMethodResponse {
+export interface IPaymentsListResponse {
   payments: IPaymentMethod[];
+}
+
+export interface IPaymentResponse {
+  payment: IPaymentMethod;
 }
 
 export interface IPostCustomerResponse {
   customerID: number;
-}
-
-export interface ICustomerDataResponse {
-  customer: IBackendCustomer;
 }

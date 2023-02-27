@@ -6,7 +6,6 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 
 import BackIconButton from "@components/BackIconButton";
-import Container from "@components/Container";
 import FormFullWidth from "@components/FormFullWidth";
 import Layout from "@components/Layout";
 import PageTitle from "@components/PageTitle";
@@ -75,115 +74,113 @@ export default function NewCustomer() {
 
   return (
     <Layout>
-      <Container>
-        <BackIconButton href={AppRoutes.customersIndex} />
-        <Paper sx={{ p: 2 }}>
-          <PageTitle bottomDivider>New Customer</PageTitle>
-          <FormFullWidth
-            autoComplete="off"
-            onSubmit={handleSubmit(handleCreateCustomer)}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Controller
-                  name="name"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Name"
-                      required
-                      fullWidth
-                      error={!!errors.name?.message}
-                      helperText={errors.name?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="email"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="E-mail"
-                      type="email"
-                      required
-                      fullWidth
-                      error={!!errors.email?.message}
-                      helperText={errors.email?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="telephone"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Telephone"
-                      required
-                      fullWidth
-                      error={!!errors.telephone?.message}
-                      helperText={errors.telephone?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="location.country"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Country"
-                      fullWidth
-                      error={!!errors.location?.country?.message}
-                      helperText={errors.location?.country?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Controller
-                  name="location.street1"
-                  defaultValue=""
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      label="Street"
-                      error={!!errors.location?.street1?.message}
-                      helperText={errors.location?.street1?.message}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  color="primary"
-                  variant="contained"
-                  sx={{ color: "white" }}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "..." : "submit"}
-                </Button>
-              </Grid>
+      <BackIconButton href={AppRoutes.customersIndex} />
+      <Paper sx={{ p: 2 }}>
+        <PageTitle bottomDivider>New Customer</PageTitle>
+        <FormFullWidth
+          autoComplete="off"
+          onSubmit={handleSubmit(handleCreateCustomer)}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Controller
+                name="name"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Name"
+                    required
+                    fullWidth
+                    error={!!errors.name?.message}
+                    helperText={errors.name?.message}
+                    {...field}
+                  />
+                )}
+              />
             </Grid>
-          </FormFullWidth>
-        </Paper>
-      </Container>
+            <Grid item xs={12}>
+              <Controller
+                name="email"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="E-mail"
+                    type="email"
+                    required
+                    fullWidth
+                    error={!!errors.email?.message}
+                    helperText={errors.email?.message}
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="telephone"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Telephone"
+                    required
+                    fullWidth
+                    error={!!errors.telephone?.message}
+                    helperText={errors.telephone?.message}
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="location.country"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Country"
+                    fullWidth
+                    error={!!errors.location?.country?.message}
+                    helperText={errors.location?.country?.message}
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="location.street1"
+                defaultValue=""
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label="Street"
+                    error={!!errors.location?.street1?.message}
+                    helperText={errors.location?.street1?.message}
+                    fullWidth
+                    {...field}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                fullWidth
+                color="primary"
+                variant="contained"
+                sx={{ color: "white" }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "..." : "submit"}
+              </Button>
+            </Grid>
+          </Grid>
+        </FormFullWidth>
+      </Paper>
     </Layout>
   );
 }

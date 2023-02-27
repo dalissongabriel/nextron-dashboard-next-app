@@ -16,6 +16,7 @@ import { useState } from "react";
 
 import { useAuthContext } from "@contexts/AuthContext";
 import { AppRoutes } from "@infra/config/AppRoutes";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { getNameInitial } from "src/utils";
 
@@ -115,7 +116,7 @@ export default function NavBar() {
           <Typography
             variant="h6"
             sx={{
-              marginRight: "14rem",
+              marginRight: { sm: "6rem", md: "14rem" },
               display: { xs: "none", sm: "block" },
               color: "white",
             }}
@@ -141,9 +142,11 @@ export default function NavBar() {
             ))}
           </Box>
           <Box marginLeft="auto">
-            <Avatar sx={(theme) => ({ bgcolor: theme.palette.primary.dark })}>
-              {getNameInitial(userInfo?.name)}
-            </Avatar>
+            <IconButton LinkComponent={Link} href={AppRoutes.myProfile}>
+              <Avatar sx={(theme) => ({ bgcolor: theme.palette.primary.dark })}>
+                {getNameInitial(userInfo?.name)}
+              </Avatar>
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>

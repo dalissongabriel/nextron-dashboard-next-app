@@ -1,12 +1,7 @@
-import {
-  ArrowRightAlt,
-  CreditCardTwoTone,
-  PeopleOutlineRounded,
-} from "@mui/icons-material";
-import { Box, Button, Paper, Typography } from "@mui/material";
+import { CreditCardTwoTone, PeopleOutlineRounded } from "@mui/icons-material";
+import { Box, Paper } from "@mui/material";
 import _isEmpty from "lodash/isEmpty";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 
 import EmptyPaymentsData from "@components/EmptyPaymentsData";
 import Layout from "@components/Layout";
@@ -20,7 +15,7 @@ import { CookiesHandler } from "@infra/handlers/CookiesHandler";
 import { HttpClientHandler } from "@infra/handlers/HttpClientHandler";
 import {
   ICustomerListResponse,
-  IPaymentMethodResponse,
+  IPaymentsListResponse,
 } from "@infra/interfaces/ReponseInterfaces";
 import { IPaymentMethod } from "@models/PaymentMethodsModels";
 
@@ -45,11 +40,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       ctx
     );
 
-  const allPaymentsPromise =
-    await HttpClientHandler.get<IPaymentMethodResponse>(
-      AppEndpoints.api.paymentMethods,
-      ctx
-    );
+  const allPaymentsPromise = await HttpClientHandler.get<IPaymentsListResponse>(
+    AppEndpoints.api.paymentMethods,
+    ctx
+  );
 
   const [customersRes, paymentsRes] = await Promise.all([
     allCustomersPromise,
@@ -75,21 +69,6 @@ export default function OverviewIndex({ payments, summary }: Props) {
       >
         <Paper sx={{ p: 2 }}>
           <PageTitle bottomDivider>Overview</PageTitle>
-          <Button
-            LinkComponent={Link}
-            href={AppRoutes.customersIndex}
-            color="primary"
-            variant="contained"
-            id="overview-btn-customers-id"
-            data-testid="overview-btn-customers-id"
-            sx={{
-              color: "white",
-              display: { md: "none" },
-            }}
-            startIcon={<ArrowRightAlt />}
-          >
-            See customers
-          </Button>
           <Box
             display="flex"
             margin="0 auto"
@@ -113,9 +92,8 @@ export default function OverviewIndex({ payments, summary }: Props) {
             />
           </Box>
           <Box mt={4}>
-            <Typography variant="h6" color="primary" mb={2}>
-              Payment Methods
-            </Typography>
+            <PageTitle bottomDivider>Payment Methods</PageTitle>
+
             {/* If don't have payments yet */}
             {_isEmpty(payments) && <EmptyPaymentsData />}
 
@@ -123,7 +101,11 @@ export default function OverviewIndex({ payments, summary }: Props) {
             {!_isEmpty(payments) && (
               <Box display="flex" flexDirection="column" rowGap={3}>
                 {payments.map((payment) => (
-                  <PaymentListCard key={payment.id} payment={payment} />
+                  <PaymentListCard
+                    key={payment.id}
+                    payment={payment}
+                    hrefToDetails={AppRoutes.paymentsId(payment.id)}
+                  />
                 ))}
               </Box>
             )}

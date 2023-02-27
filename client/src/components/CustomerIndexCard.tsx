@@ -14,7 +14,6 @@ import { grey } from "@mui/material/colors";
 import { AppRoutes } from "@infra/config/AppRoutes";
 import { ICustomer } from "@models/CustomersModels";
 import Link from "next/link";
-import bg from "src/assets/maps-mock.jpg";
 
 interface Props {
   customer: ICustomer;
@@ -26,16 +25,15 @@ export default function CustomerIndexCard({ customer }: Props) {
       <Box
         sx={{
           position: "relative",
-          backgroundImage: `url(${bg.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background: "linear-gradient(90deg, #37E1C2 0%, #22C1C1 100%)",
           width: "100%",
           height: "120px",
         }}
       >
         <Avatar
+          color="primary"
           sx={{
-            bgcolor: grey[200],
+            bgcolor: "#22C1C1",
             border: "4px solid white",
             width: "90px",
             height: "90px",
@@ -53,6 +51,7 @@ export default function CustomerIndexCard({ customer }: Props) {
         <Typography component="span" color="GrayText" fontSize="1rem">
           Customer ID: {customer.customerId}
         </Typography>
+        <Divider light sx={{ my: 2 }} />
 
         <Typography
           color="GrayText"
@@ -80,7 +79,6 @@ export default function CustomerIndexCard({ customer }: Props) {
         >
           <Phone /> {customer.telephone || "-"}
         </Typography>
-        <Divider light sx={{ my: 2 }} />
         <Grid container>
           <Grid item xs={6}>
             <Typography color="GrayText" fontSize="1rem" fontWeight={500}>

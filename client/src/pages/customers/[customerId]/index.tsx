@@ -1,5 +1,4 @@
 import { AddCircleRounded } from "@mui/icons-material";
-import AddCardIcon from "@mui/icons-material/AddCard";
 import { Box, Button, Card, Typography } from "@mui/material";
 import _isEmpty from "lodash/isEmpty";
 import { GetServerSideProps } from "next";
@@ -8,6 +7,7 @@ import Link from "next/link";
 import BackIconButton from "@components/BackIconButton";
 import Container from "@components/Container";
 import CustomerIndexCard from "@components/CustomerIndexCard";
+import EmptyPaymentsData from "@components/EmptyPaymentsData";
 import Layout from "@components/Layout";
 import PaymentListCard from "@components/PaymentListCard";
 import { AppEndpoints } from "@infra/config/AppEndpoints";
@@ -91,23 +91,10 @@ export default function CustomerDetailsIndex({
           >
             Add new payment method
           </Button>
-          {/* Empty payments */}
-          {_isEmpty(paymentMethods) && (
-            <Box
-              display="flex"
-              flexDirection="column"
-              rowGap={2}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <AddCardIcon color="disabled" sx={{ fontSize: "4rem" }} />
-              <Typography color="grey">
-                No payment method registered .-.
-              </Typography>
-            </Box>
-          )}
+          {/* If don't have payments yet */}
+          {_isEmpty(paymentMethods) && <EmptyPaymentsData />}
 
-          {/* List of payments */}
+          {/* Mobile payments presentation */}
           {!_isEmpty(paymentMethods) && (
             <Box display="flex" flexDirection="column" rowGap={3}>
               {paymentMethods.map((payment) => (

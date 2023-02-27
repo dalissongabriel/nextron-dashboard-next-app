@@ -7,5 +7,6 @@ export const AppRoutes = {
   customersNew: "/customers/new",
   index: "/",
   login: "/login",
+  overviewIndex: "/overview",
   register: "/register",
 };

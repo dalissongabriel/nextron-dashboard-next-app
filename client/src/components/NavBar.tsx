@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
 import { useAuthContext } from "@contexts/AuthContext";
+import { AppRoutes } from "@infra/config/AppRoutes";
 import { useRouter } from "next/router";
 import { getNameInitial } from "src/utils";
 
@@ -46,6 +47,18 @@ export default function NavBar() {
     return isCurrentRoute(navItemLabel) ? "#178787" : "inherit";
   };
 
+  const handleRedirect = (navItemLabel: string) => {
+    const routesByLabel: Record<string, string> = {
+      Customers: AppRoutes.customersIndex,
+      Overview: AppRoutes.overviewIndex,
+      default: AppRoutes.customersIndex,
+    };
+
+    const redirectTo = routesByLabel[navItemLabel];
+
+    router.push(redirectTo);
+  };
+
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -66,7 +79,10 @@ export default function NavBar() {
               borderStartEndRadius: "20px",
             }}
           >
-            <ListItemButton sx={{ textAlign: "left" }}>
+            <ListItemButton
+              sx={{ textAlign: "left" }}
+              onClick={() => handleRedirect(item)}
+            >
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -118,6 +134,7 @@ export default function NavBar() {
                     backgroundColor: "#178787",
                   },
                 }}
+                onClick={() => handleRedirect(item)}
               >
                 {item}
               </Button>

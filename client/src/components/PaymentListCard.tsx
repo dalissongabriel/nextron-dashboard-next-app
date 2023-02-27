@@ -5,6 +5,7 @@ import Link from "next/link";
 import LabelTypography from "@components/LabelTypography";
 import ValueTypography from "@components/ValueTypography";
 import { IPaymentMethod } from "@models/PaymentMethodsModels";
+import CardDetails from "./CardDetails";
 
 interface Props {
   payment: IPaymentMethod;
@@ -21,10 +22,10 @@ export default function PaymentListCard({ payment }: Props) {
         <Grid item xs={6} sm={6}>
           <LabelTypography>Details</LabelTypography>
           <ValueTypography>
-            <>
-              {payment.cardBin}&bull;&bull; &bull;&bull;&bull;&bull;&bull;{" "}
-              {payment.cardLastFour}
-            </>
+            <CardDetails
+              initWith={payment.cardBin}
+              endsWith={payment.cardLastFour}
+            />
           </ValueTypography>
         </Grid>
         <Grid item xs={6} sm={6}>

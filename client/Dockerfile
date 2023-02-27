@@ -1,16 +1,15 @@
 # Build target development #
 ###########################
 FROM node:14-alpine AS development
-RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-COPY package.json yarn.lock tsconfig.json ./
+COPY package.json package-lock.json tsconfig.json ./
 
 # Install development dependencies
-RUN yarn install --frozen-lockfile
+RUN npm install
 
 COPY . ./
 
 EXPOSE 3000
-CMD ["yarn", "dev"]
+CMD ["npm", "start"]

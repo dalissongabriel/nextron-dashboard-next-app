@@ -107,6 +107,8 @@ func Login(c *gin.Context) {
 		Name:    "token",
 		Value:   tokenString,
 		Expires: expirationTime,
+		Secure: true,
+		SameSite: http.SameSiteNoneMode,
 	})
 
 	fmt.Println(tokenString)

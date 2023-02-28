@@ -2,11 +2,11 @@ import { Divider, Typography } from "@mui/material";
 import { PropsWithChildren } from "react";
 
 interface Props {
-  bottomDivider: boolean;
+  bottomDivider?: boolean;
 }
 
 export default function PageTitle({
-  bottomDivider,
+  bottomDivider = false,
   children,
 }: PropsWithChildren<Props>) {
   return (
@@ -14,7 +14,13 @@ export default function PageTitle({
       <Typography variant="h6" color="primary">
         {children}
       </Typography>
-      {bottomDivider && <Divider light sx={{ mt: 0.5, mb: 3 }} />}
+      {bottomDivider && (
+        <Divider
+          data-testid="page-title-divider-id"
+          light
+          sx={{ mt: 0.5, mb: 3 }}
+        />
+      )}
     </>
   );
 }

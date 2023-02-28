@@ -6,9 +6,9 @@ import Link from "next/link";
 
 import BackIconButton from "@components/BackIconButton";
 import CustomerIndexCard from "@components/CustomerIndexCard";
-import EmptyPaymentsData from "@components/EmptyPaymentsData";
 import Layout from "@components/Layout";
 import PaymentListCard from "@components/PaymentListCard";
+import EmptyPaymentsData from "@components/PaymentsEmpty";
 import { AppEndpoints } from "@infra/config/AppEndpoints";
 import { AppRoutes } from "@infra/config/AppRoutes";
 import { redirectNotAuthenticated } from "@infra/config/SessionConfigs";

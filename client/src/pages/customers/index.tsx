@@ -1,8 +1,10 @@
 import { AddCircleOutlined } from "@mui/icons-material";
 import { Box, Button, Paper } from "@mui/material";
+import _isEmpty from "lodash/isEmpty";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
+import CustomerEmpty from "@components/CustomerEmpty";
 import CustomerListCard from "@components/CustomerListCard";
 import Layout from "@components/Layout";
 import PageTitle from "@components/PageTitle";
@@ -45,29 +47,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function CustomerIndex({ customers }: Props) {
   return (
     <Layout>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", padding: "1rem 1rem" }}
-      >
-        <Paper sx={{ p: 2 }}>
-          <Box display="flex" justifyContent="space-between">
-            <PageTitle bottomDivider>Customers</PageTitle>
-            <Button
-              LinkComponent={Link}
-              href={AppRoutes.customersNew}
-              color="primary"
-              variant="contained"
-              id="customer-btn-new-add-customer"
-              data-testid="customer-btn-new-add-customer"
-              sx={{
-                color: "white",
-                display: { md: "flex", sm: "none", xs: "none" },
-              }}
-              startIcon={<AddCircleOutlined />}
-            >
-              Add Customer
-            </Button>
-          </Box>
-
+      <Paper sx={{ p: 2, minHeight: { lg: 800 } }}>
+        <Box display="flex" justifyContent="space-between">
+          <PageTitle bottomDivider>Customers</PageTitle>
           <Button
             LinkComponent={Link}
             href={AppRoutes.customersNew}
@@ -77,19 +59,40 @@ export default function CustomerIndex({ customers }: Props) {
             data-testid="customer-btn-new-add-customer"
             sx={{
               color: "white",
-              display: { md: "none" },
+              display: { md: "flex", sm: "none", xs: "none" },
             }}
             startIcon={<AddCircleOutlined />}
           >
             Add Customer
           </Button>
-          <Box mt={2}>
-            {customers?.map((customer) => (
-              <CustomerListCard key={customer.customerId} customer={customer} />
-            ))}
-          </Box>
-        </Paper>
-      </Box>
+        </Box>
+
+        <Button
+          LinkComponent={Link}
+          href={AppRoutes.customersNew}
+          color="primary"
+          variant="contained"
+          id="customer-btn-new-add-customer"
+          data-testid="customer-btn-new-add-customer"
+          sx={{
+            color: "white",
+            display: { md: "none" },
+          }}
+          startIcon={<AddCircleOutlined />}
+        >
+          Add Customer
+        </Button>
+
+        {/* If don't have customers yet */}
+        {_isEmpty(customers) && <CustomerEmpty />}
+
+        {/* Mobile customers presentation */}
+        <Box mt={2}>
+          {customers?.map((customer) => (
+            <CustomerListCard key={customer.customerId} customer={customer} />
+          ))}
+        </Box>
+      </Paper>
     </Layout>
   );
 }

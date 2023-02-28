@@ -3,10 +3,10 @@ import { Box, Paper } from "@mui/material";
 import _isEmpty from "lodash/isEmpty";
 import { GetServerSideProps } from "next";
 
-import EmptyPaymentsData from "@components/EmptyPaymentsData";
 import Layout from "@components/Layout";
 import PageTitle from "@components/PageTitle";
 import PaymentListCard from "@components/PaymentListCard";
+import PaymentsEmpty from "@components/PaymentsEmpty";
 import SummaryCard from "@components/SummaryCard";
 import { AppEndpoints } from "@infra/config/AppEndpoints";
 import { AppRoutes } from "@infra/config/AppRoutes";
@@ -64,54 +64,50 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function OverviewIndex({ payments, summary }: Props) {
   return (
     <Layout>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", padding: "1rem 1rem" }}
-      >
-        <Paper sx={{ p: 2 }}>
-          <PageTitle bottomDivider>Overview</PageTitle>
-          <Box
-            display="flex"
-            margin="0 auto"
-            columnGap={2}
-            justifyContent="center"
-            alignItems="center"
-            maxWidth={400}
-            mt={2}
-          >
-            <SummaryCard
-              label="Customers"
-              mainColor="#22C1C1"
-              qty={summary.customersQty}
-              icon={<PeopleOutlineRounded color="primary" fontSize="large" />}
-            />
-            <SummaryCard
-              label="Payments"
-              mainColor="#FB1B44"
-              qty={summary.paymentsQty}
-              icon={<CreditCardTwoTone color="secondary" fontSize="large" />}
-            />
-          </Box>
-          <Box mt={4}>
-            <PageTitle bottomDivider>Payment Methods</PageTitle>
+      <Paper sx={{ p: 2, minHeight: { lg: 800 } }}>
+        <PageTitle bottomDivider>Overview</PageTitle>
+        <Box
+          display="flex"
+          margin="0 auto"
+          columnGap={2}
+          justifyContent="center"
+          alignItems="center"
+          maxWidth={400}
+          mt={2}
+        >
+          <SummaryCard
+            label="Customers"
+            mainColor="#22C1C1"
+            qty={summary.customersQty}
+            icon={<PeopleOutlineRounded color="primary" fontSize="large" />}
+          />
+          <SummaryCard
+            label="Payments"
+            mainColor="#FB1B44"
+            qty={summary.paymentsQty}
+            icon={<CreditCardTwoTone color="secondary" fontSize="large" />}
+          />
+        </Box>
+        <Box mt={4}>
+          <PageTitle bottomDivider>Payment Methods</PageTitle>
 
-            {/* If don't have payments yet */}
-            {_isEmpty(payments) && <EmptyPaymentsData />}
+          {/* If don't have payments yet */}
+          {_isEmpty(payments) && <PaymentsEmpty />}
 
-            {/* Mobile payments presentation */}
-            {!_isEmpty(payments) && (
-              <Box display="flex" flexDirection="column" rowGap={3}>
-                {payments.map((payment) => (
-                  <PaymentListCard
-                    key={payment.id}
-                    payment={payment}
-                    hrefToDetails={AppRoutes.paymentsId(payment.id)}
-                  />
-                ))}
-              </Box>
-            )}
-          </Box>
-        </Paper>
-      </Box>
+          {/* Mobile payments presentation */}
+          {!_isEmpty(payments) && (
+            <Box display="flex" flexDirection="column" rowGap={3}>
+              {payments.map((payment) => (
+                <PaymentListCard
+                  key={payment.id}
+                  payment={payment}
+                  hrefToDetails={AppRoutes.paymentsId(payment.id)}
+                />
+              ))}
+            </Box>
+          )}
+        </Box>
+      </Paper>
     </Layout>
   );
 }

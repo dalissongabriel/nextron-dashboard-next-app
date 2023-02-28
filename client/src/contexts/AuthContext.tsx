@@ -88,6 +88,10 @@ export const AuthProvider = ({ children }: ProviderProps) => {
       const { token, user, msg, success } = res;
 
       if (token) {
+        // Persist token
+        (window as any).token = token;
+        CookiesHandler.setToken(token);
+
         // Fill user info
         setUser(user);
 

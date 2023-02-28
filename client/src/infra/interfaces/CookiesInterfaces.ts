@@ -1,7 +1,22 @@
-export interface ICookies<O = any> {
-  get: (cookieName: string, options?: Partial<O>, ctx?: any) => string;
-  set: (cookieName: string, data: any, options?: Partial<O>, ctx?: any) => void;
-  delete: (cookieName: string, options?: Partial<O>, ctx?: any) => void;
+import Cookies from "cookies";
+
+export interface ICookies {
+  get: (
+    cookieName: string,
+    options?: Partial<Cookies.IOptions>,
+    ctx?: any
+  ) => string;
+  set: (
+    cookieName: string,
+    data: any,
+    options?: Partial<Cookies.IOptions>,
+    ctx?: any
+  ) => void;
+  delete: (
+    cookieName: string,
+    options?: Partial<Cookies.IOptions>,
+    ctx?: any
+  ) => void;
 }
 
 export interface ISessionCookies {

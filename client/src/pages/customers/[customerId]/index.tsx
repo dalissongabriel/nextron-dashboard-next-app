@@ -14,13 +14,12 @@ import { AppRoutes } from "@infra/config/AppRoutes";
 import { redirectNotAuthenticated } from "@infra/config/SessionConfigs";
 import { CookiesHandler } from "@infra/handlers/CookiesHandler";
 import { HttpClientHandler } from "@infra/handlers/HttpClientHandler";
-import { IPaymentsListResponse } from "@infra/interfaces/ReponseInterfaces";
-import { IBackendCustomer, ICustomer } from "@models/CustomersModels";
+import {
+  ICustomerDataResponse,
+  IPaymentsListResponse,
+} from "@infra/interfaces/ReponseInterfaces";
+import { ICustomer } from "@models/CustomersModels";
 import { IPaymentMethod } from "@models/PaymentMethodsModels";
-
-interface CustomerData {
-  customer: IBackendCustomer;
-}
 
 interface Props {
   customer: ICustomer;
@@ -35,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const customerId = Number(ctx.params?.customerId);
 
-  const getCustomerPromise = HttpClientHandler.get<CustomerData>(
+  const getCustomerPromise = HttpClientHandler.get<ICustomerDataResponse>(
     AppEndpoints.api.customerId(customerId),
     ctx
   );

@@ -1,4 +1,4 @@
-import { IBackendCustomer } from "@models/CustomersModels";
+import { ILocation } from "@models/CustomersModels";
 import { IPaymentMethod } from "@models/PaymentMethodsModels";
 import { IUser } from "@models/UsersModels";
 
@@ -18,6 +18,16 @@ export interface IRegisterResponse {
   msg: string;
   success: boolean;
   errors?: string[];
+}
+
+export interface IBackendCustomer {
+  Location: ILocation;
+  customerID: number;
+  email: string;
+  location_id: number;
+  name: string;
+  registration_time: Date;
+  telephone: string;
 }
 
 export interface ICustomerListResponse {

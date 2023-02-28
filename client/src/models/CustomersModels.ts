@@ -12,13 +12,3 @@ export interface ICustomer {
   name: string;
   telephone: string;
 }
-
-export interface IBackendCustomer {
-  Location: ILocation;
-  customerID: number;
-  email: string;
-  location_id: number;
-  name: string;
-  registration_time: Date;
-  telephone: string;
-}

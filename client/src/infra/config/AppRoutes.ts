@@ -12,5 +12,5 @@ export const AppRoutes = {
   overviewIndex: "/overview",
   paymentsId: (id: number) => `/paymentmethods/${id}`,
   register: "/register",
-  myProfile: "myprofile",
+  myProfile: "/myprofile",
 };
